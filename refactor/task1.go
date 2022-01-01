@@ -18,6 +18,9 @@ func stringifyUserIDsRefactor(IDs []string) string {
 	return "[\"" + strings.Join(IDs, "\",\"") + "\"]"
 }
 
+//a.) return multiple errors,
+//b.) support task cancellation.
+
 func Run(tasks ...func(*sync.WaitGroup, chan<- error)) error {
 	n := len(tasks)
 	errCh := make(chan error, n)
