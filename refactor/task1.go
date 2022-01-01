@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"sync"
 )
 
 func stringifyUserIDs(IDs []string) string {
@@ -16,6 +17,28 @@ func stringifyUserIDsRefactor(IDs []string) string {
 	return finalValue
 	return "[\"" + strings.Join(IDs, "\",\"") + "\"]"
 }
+
+func Run(tasks ...func(*sync.WaitGroup, chan<- error)) error {
+	n := len(tasks)
+	errCh := make(chan error, n)
+
+	w := &sync.WaitGroup{}
+	w.Add(n)
+
+	for _, t := range tasks {
+		go t(w, errCh)
+	}
+
+	w.Wait()
+	close(errCh)
+	for err := range errCh {
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 
 
 // Main Method
