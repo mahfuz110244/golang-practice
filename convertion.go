@@ -3,10 +3,15 @@ package main
 import (
 	"fmt"
 	"strconv"
+
+	"github.com/google/uuid"
 )
 
 // Main Method
 func main() {
+	outUUID, _ := uuid.Parse("cf2ec52c-2462-4662-bd3a-a7ce360c5302")
+	fmt.Println("String false to UUID converted : ", outUUID)
+
 	outBoolean, _ := strconv.ParseBool("false")
 	fmt.Println("String false to boolean converted : ", outBoolean)
 
