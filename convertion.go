@@ -30,4 +30,6 @@ func main() {
 	fmt.Println("Int 25 to Integer8 converted : ", int8(25))
 	fmt.Println("Int8 25 to Integer converted : ", int(25))
 
+	fmt.Println("type of a is %T\n", 10)
+
 }
