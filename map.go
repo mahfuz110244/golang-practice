@@ -19,7 +19,10 @@ unbuffered.
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 func main() {
 	m := map[string]float64{"pi": 3.14}
@@ -53,4 +56,31 @@ func main() {
 	fmt.Println(m1)
 	fmt.Println(m2)
 	fmt.Println(m3)
+
+	hashMap1 := map[int]int{}
+	fmt.Println(hashMap1) // map[]
+
+	hashMap2 := make(map[int]int)
+	fmt.Println(hashMap2) // map[]
+
+	hashMap3 := make(map[int]int, 0)
+	fmt.Println(hashMap3) // map[]
+
+	hashMap4 := make(map[int]int, 100)
+	fmt.Println(hashMap4) // map[]
+
+	hashMap5 := map[int]int{1: 10}
+	fmt.Println(hashMap5) // map[]
+
+	fmt.Println(hashMap1 == nil) // false
+	fmt.Println(hashMap2 == nil) // false
+	fmt.Println(hashMap5 == nil) // false
+	fmt.Println(len(hashMap1))   // 0
+	fmt.Println(len(hashMap5))   // 1
+
+	fmt.Println("Is Map 1 is equal to Map 2: ", reflect.DeepEqual(hashMap1, hashMap2)) // true
+	fmt.Println("Is Map 1 is equal to Map 3: ", reflect.DeepEqual(hashMap1, hashMap3)) // true
+	fmt.Println("Is Map 1 is equal to Map 4: ", reflect.DeepEqual(hashMap1, hashMap4)) // true
+	fmt.Println("Is Map 4 is equal to Map 5: ", reflect.DeepEqual(hashMap4, hashMap5)) // false
+
 }
