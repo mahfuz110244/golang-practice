@@ -45,6 +45,19 @@ func firstMissingPositive(nums []int) int {
 	return n + 1
 }
 
+/* python3 solution
+def firstMissingPositive(nums: List[int]) -> int:
+	n = len(nums)
+	nums_dict = {}
+	for i in range(n):
+		if nums[i]>0:
+			nums_dict[nums[i]] = 1
+	for i in range(1, n+1):
+		if i not in nums_dict:
+			return i
+	return n+1
+*/
+
 func main() {
 	nums := []int{1, 2, 0}
 	fmt.Println(nums, firstMissingPositive(nums))
