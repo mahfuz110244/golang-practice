@@ -69,6 +69,9 @@ func firstUniqChar(s string) int {
 	return -1
 }
 
+
+
+
 /* python3 solution
    def firstUniqChar(s: str) -> int:
        asciiArray = [0]*26
