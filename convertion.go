@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"strings"
 
 	"github.com/google/uuid"
 )
@@ -31,5 +32,7 @@ func main() {
 	fmt.Println("Int8 25 to Integer converted : ", int(25))
 
 	fmt.Println("type of a is %T\n", 10)
+
+	fmt.Println("slice of ints", strings.Split("1,2,3,4,5", ","))
 
 }
