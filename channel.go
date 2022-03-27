@@ -82,33 +82,29 @@ import (
 	"time"
 )
 
-func main() {
-	tooLate := make(chan struct{})
-	proCh := make(chan string)
-
-	go func() {
-		for {
-			fmt.Println("working")
-			time.Sleep(1 * time.Second)
-			select {
-			case <-tooLate:
-				fmt.Println("stopped")
-				return
-			case proCh <- "processed": //this why it won't block the goroutine if the timer expirerd.
-			default: // adding default will make it not block
-			}
-			fmt.Println("done here")
-
+func goRoutine(ch chan string) {
+	for {
+		fmt.Println("working, now wait for 1 second in goroutine")
+		time.Sleep(1 * time.Second)
+		fmt.Println(time.Now())
+		data := <-ch
+		fmt.Println(fmt.Sprintf("signal from main goroutine: %s", data))
+		if data != "stop" {
+			fmt.Println("working in goroutine")
+		} else {
+			fmt.Println("stopped in goroutine")
+			return
 		}
-	}()
-	select {
-	case proc := <-proCh:
-		fmt.Println(proc)
-	case <-time.After(1 * time.Second):
-		fmt.Println("too late")
-		close(tooLate)
 	}
+}
 
-	time.Sleep(4 * time.Second)
-	fmt.Println("finish\n")
+func main() {
+	fmt.Println(fmt.Sprintf("main goroutine starting: %s", time.Now()))
+	ch := make(chan string)
+	go goRoutine(ch)
+	fmt.Println("wait for 20 second in main goroutine")
+	time.Sleep(20 * time.Second)
+	ch <- "stop"
+	time.Sleep(1 * time.Second)
+	fmt.Println(fmt.Sprintf("main goroutine finished: %s", time.Now()))
 }
