@@ -22,9 +22,9 @@ func main() {
 
 	// Send ONLY
 	go func(ch chan<- int, wg *sync.WaitGroup) {
-		close(ch)
-		// ch <- 0
 		// close(ch)
+		ch <- 0
+		close(ch)
 		wg.Done()
 
 	}(myCh, wg)
