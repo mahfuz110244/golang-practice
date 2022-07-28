@@ -1,4 +1,13 @@
 // Do not communicate by sharing memory; instead share memory by communicating
+Let me go simple and to the point here.
+
+Don't communicate by sharing memory.
+
+It is like when your are communicating using threads for example you have to use variables or mutexes to lock memory for not allowing someone to read and write on it until the communication is complete.
+
+Share memory by communicating
+
+In go routines values move on channels rather than blocking the memory, sender notifies receiver to receive from that channel and hence it share memory by communicating with receiver to get from a channel.
 
 package main
 
