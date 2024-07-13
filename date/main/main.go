@@ -6,8 +6,14 @@ import (
 )
 
 func main() {
-	dateString := "2022-05-18"
-	date, error := time.Parse("2006-01-02", dateString)
+	dateString := "2023/06/30"
+	date, error := time.Parse("2006/01/02", dateString)
+	fmt.Println(date)
+
+	dateString = "6/30/2023"
+	date, error = time.Parse("1/02/2006", dateString)
+
+	fmt.Println(date)
 
 	fmt.Println(date.AddDate(0, 0, int(10)))
 	fmt.Println(time.Now())
@@ -23,4 +29,5 @@ func main() {
 	fmt.Println()
 	fmt.Printf("Value of dateString: %v\n", dateString)
 	fmt.Printf("Value of date: %v", date)
+	fmt.Printf(time.Now().Format("2006-01-02T15:04:05.000Z"))
 }

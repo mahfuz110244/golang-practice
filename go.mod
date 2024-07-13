@@ -16,6 +16,7 @@ require (
 	github.com/mailgun/mailgun-go/v4 v4.6.1 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421 // indirect
 	github.com/modern-go/reflect2 v0.0.0-20180701023420-4b7aa43c6742 // indirect
+	github.com/petermattis/goid v0.0.0-20240607163614-bb94eb51e7a7 // indirect
 	github.com/pkg/errors v0.8.1 // indirect
 	golang.org/x/image v0.0.0-20220321031419-a8550c1d254a // indirect
 )
